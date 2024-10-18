@@ -1,0 +1,19 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: flask-app
+  namespace: argocd
+spec:
+  project: default
+  source:
+    repoURL: 'https://github.com/surendranaidu/k8_flask-app.git'
+    targetRevision: HEAD  # Or a specific branch/tag
+    path: '.'  # Path to your Kubernetes manifests (e.g., root folder)
+  destination:
+    server: 'https://kubernetes.default.svc'
+    namespace: default  # Namespace to deploy in
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
+

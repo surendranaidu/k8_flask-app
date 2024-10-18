@@ -6,8 +6,9 @@ spec:
   selector:
     app: flask-app
   ports:
-    - protocol: TCP
-      port: 80
-      targetPort: 5000
-  type: LoadBalancer
+  - protocol: TCP
+    port: 80           # External port
+    targetPort: 5000    # Flask app's internal port
+    nodePort: 31158     # NodePort (can be chosen manually)
+  type: NodePort        # Change type to NodePort
 
